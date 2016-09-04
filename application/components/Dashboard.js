@@ -4,7 +4,7 @@ import { TabBarItemIOS } from 'react-native-vector-icons/Ionicons';
 
 import ActivityView from './activity/ActivityView';
 import MessagesView from './messages/MessagesView';
-import ProfileView from './profile/ProfileView';
+import ProfileContainer from '../containers/ProfileContainer';
 import GroupsView from './groups/GroupsView';
 import CalendarView from './calendar/CalendarView';
 import { Headers } from '../fixtures';
@@ -67,7 +67,7 @@ class Dashboard extends Component{
           iconName='ios-person'
           onPress={() => this.setState({ selectedTab: 'Profile' })}
         >
-          <ProfileView currentUser={user} logout={this.logout} {...this.props}/>
+          <ProfileContainer currentUser={user} logout={this.logout} {...this.props}/>
         </TabBarItemIOS>
       </TabBarIOS>
     )

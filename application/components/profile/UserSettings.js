@@ -1,3 +1,4 @@
+import Config from 'react-native-config';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationBar from 'react-native-navbar';
 import React, { Component } from 'react';
@@ -6,11 +7,10 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { find } from 'underscore';
 
-import Colors from '../../styles/colors';
-import { Headers } from '../../fixtures';
 import BackButton from '../shared/BackButton';
-import { GooglePlacesCityConfig } from '../../config';
+import Colors from '../../styles/colors';
 import { DEV, API } from '../../config';
+import { Headers } from '../../fixtures';
 import { globals, formStyles, autocompleteStyles } from '../../styles';
 
 const styles = formStyles;
@@ -101,7 +101,11 @@ class UserSettings extends Component{
               fetchDetails={true}
               onPress={this.selectLocation}
               getDefaultValue={() => {return this.state.location.city.long_name;}}
-              query={GooglePlacesCityConfig}
+              query={{
+                key: Config.GOOGLE_PLACES_API_KEY,
+                language: 'en',
+                types: '(cities)',
+              }}
               currentLocation={false}
               currentLocationLabel="Current location"
               nearbyPlacesAPI='GooglePlacesSearch'
